@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Таксопарк — Главная</title>
+    <link rel="stylesheet" href="{% static 'taxi/style.css' %}">
+</head>
+<body>
+    <h1>Система управления таксопарком</h1>
+    <h2>Список последних заказов:</h2>
+
+    {% if latest_orders %}
+        <ul>
+        {% for order in latest_orders %}
+            <li>
+                <a href="{% url 'taxi:detail' order.order_code %}">
+                    <strong>Заказ #{{ order.order_code }}</strong>: 
+                    {{ order.departure_place }} ➔ {{ order.destination_place }} 
+                </a>
+                ({{ order.cost }} руб.) — <em>Статус: {{ order.status }}</em>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Заказов пока нет.</p>
+    {% endif %}
+</body>
+</html>

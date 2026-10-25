@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказ #{{ order.order_code }}</title>
+    <link rel="stylesheet" href="{% static 'taxi/style.css' %}">
+</head>
+<body>
+    <h1>Информация о заказе #{{ order.order_code }}</h1>
+    
+    <ul>
+        <li><strong>Откуда:</strong> {{ order.departure_place }}</li>
+        <li><strong>Куда:</strong> {{ order.destination_place }}</li>
+        <li><strong>Телефон клиента:</strong> {{ order.client_phone }}</li>
+        <li><strong>Стоимость:</strong> {{ order.cost }} руб.</li>
+        <li><strong>Статус:</strong> {{ order.status }}</li>
+        <li><strong>Автомобиль:</strong> {{ order.car }}</li>
+        <li><strong>Диспетчер:</strong> {{ order.dispatcher }}</li>
+        <li><strong>Время поступления:</strong> {{ order.incoming_datetime }}</li>
+    </ul>
+    
+    <p><a href="{% url 'taxi:index' %}">← Вернуться к списку заказов</a></p>
+</body>
+</html>
